@@ -1,12 +1,10 @@
 // =============================================================================
 // AEG STORE — WIDE PACIFIC HORIZON
-// Warm light design layer on Cornerstone 6.19.1
-// Palette: warm cream canvas · deep warm brown · vibrant orange accent
-// Inspiration: game-workdo energy on a light background, Alderac branding
+// Inspired by game-workdo.myshopify.com, adapted for BigCommerce + Alderac brand
+// Structure: cream canvas · white main header · orange category nav bar
 // =============================================================================
 
-// Global
-// -----------------------------------------------------------------------------
+// ---- Global -----------------------------------------------------------------
 
 body {
     -webkit-font-smoothing: antialiased;
@@ -19,40 +17,122 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
-// Header — white with orange accent stripe
-// -----------------------------------------------------------------------------
+a {
+    transition: color 0.15s ease;
+}
 
-.header {
-    border-bottom: 3px solid #e05a00;
-    box-shadow: 0 2px 12px rgba(44, 26, 14, 0.08);
+// ---- Top info bar (hours / support / currency) ------------------------------
+
+.header-topbar {
+    background-color: #1c0e00;
+    border-bottom: 1px solid #3a1e08;
+    display: none;
+    font-size: remCalc(12px);
 
     @include breakpoint("medium") {
-        border-bottom: 3px solid #e05a00;
+        display: block;
+    }
+}
+
+.header-topbar-inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: remCalc(1280px);
+    padding: remCalc(6px) remCalc(24px);
+}
+
+.header-topbar-left {
+    align-items: center;
+    color: #d9c0b0;
+    display: flex;
+    gap: remCalc(24px);
+}
+
+.header-topbar-right {
+    align-items: center;
+    display: flex;
+    gap: remCalc(12px);
+
+    .navUser-action--currencySelector {
+        color: #d9c0b0;
+        font-size: remCalc(12px);
+        padding: 0;
+
+        &:hover {
+            color: #e05a00;
+        }
+    }
+}
+
+.header-topbar-item {
+    align-items: center;
+    color: #d9c0b0;
+    display: inline-flex;
+    gap: remCalc(5px);
+
+    svg {
+        color: #e05a00;
+        flex-shrink: 0;
+        stroke: #e05a00;
+    }
+
+    a {
+        color: #e05a00;
+        text-decoration: none;
+
+        &:hover {
+            color: #f08040;
+        }
+    }
+
+    &.header-topbar-item--support {
+        @media (max-width: 900px) {
+            display: none;
+        }
+    }
+}
+
+// ---- Main header (white bar: logo + utility nav) ----------------------------
+
+.header {
+    background-color: #ffffff;
+    border-bottom: none;
+    box-shadow: none;
+
+    @include breakpoint("medium") {
+        border-bottom: none;
     }
 }
 
 .header-logo {
     @include breakpoint("medium") {
-        margin: spacing("single") remCalc(24px);
+        margin: spacing("single") remCalc(24px) spacing("single") remCalc(24px);
     }
 }
 
 .header-logo-text {
     color: #e05a00;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 
-// Mobile menu toggle uses dark warm color on white header
 .mobileMenu-toggleIcon,
 .mobileMenu-toggleIcon::before,
 .mobileMenu-toggleIcon::after {
     background: #2c1a0e;
 }
 
-// Navigation — top utility bar
-// -----------------------------------------------------------------------------
+// ---- Utility nav (navUser) — white header bar -------------------------------
+
+.navUser {
+    @include breakpoint("medium") {
+        background-color: #ffffff;
+        border-bottom: 1px solid #f0ddd0;
+    }
+}
 
 .navUser-action {
     color: #2c1a0e;
@@ -62,8 +142,19 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     transition: color 0.15s ease;
 
-    &:hover {
+    &:hover,
+    &.is-open {
         color: #e05a00;
+
+        svg {
+            fill: #e05a00;
+            stroke: #e05a00;
+        }
+    }
+
+    svg {
+        fill: #2c1a0e;
+        stroke: #2c1a0e;
     }
 }
 
@@ -75,94 +166,177 @@ h1, h2, h3, h4, h5, h6 {
 
 .navUser-dropdown {
     border-top: 2px solid #e05a00;
-    box-shadow: 0 4px 16px rgba(44, 26, 14, 0.12);
+    box-shadow: 0 4px 20px rgba(44, 26, 14, 0.12);
 }
 
-// Navigation — main page nav
-// -----------------------------------------------------------------------------
+// ---- Category nav bar — ORANGE (the game-store signature element) -----------
+
+.navPages-container {
+    @include breakpoint("medium") {
+        background-color: #e05a00;
+        box-shadow: 0 2px 8px rgba(44, 26, 14, 0.2);
+    }
+}
+
+.navPages {
+    @include breakpoint("medium") {
+        background-color: #e05a00 !important; // override Cornerstone's `background: none`
+    }
+}
 
 .navPages-action {
-    color: #2c1a0e;
-    font-size: fontSize("smaller");
+    color: #ffffff;
+    font-size: remCalc(13px);
     font-weight: 700;
     letter-spacing: 0.05em;
-    padding-bottom: remCalc(16px);
-    padding-top: remCalc(16px);
+    padding-bottom: remCalc(14px);
+    padding-top: remCalc(14px);
     text-transform: uppercase;
-    transition: color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
 
-    &:hover,
-    &.is-open {
-        color: #e05a00;
+    @include breakpoint("medium") {
+        color: #ffffff;
+
+        &:hover,
+        &.is-open,
+        &.activePage {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: #ffffff;
+        }
+    }
+
+    svg {
+        fill: #ffffff;
+        stroke: #ffffff;
     }
 }
 
-.navPages-subMenu {
-    border-top: 3px solid #e05a00;
-    box-shadow: 0 4px 16px rgba(44, 26, 14, 0.1);
-}
-
-.navPages-subMenu-item a {
-    color: #2c1a0e;
-    font-size: fontSize("smaller");
-
-    &:hover {
-        color: #e05a00;
+// Dropdown sub-menu — dark warm brown on desktop
+.navPage-subMenu {
+    @include breakpoint("medium") {
+        background-color: #1c0e00 !important;
+        border-top: 3px solid #e05a00;
+        box-shadow: 0 6px 20px rgba(44, 26, 14, 0.25);
     }
 }
 
-// Quick search
-// -----------------------------------------------------------------------------
+.navPage-subMenu-action,
+.navPage-childList-action {
+    @include breakpoint("medium") {
+        color: #f5ede6;
 
+        &:hover {
+            color: #f08040;
+        }
+    }
+}
+
+.navPage-subMenu-item > .navPage-subMenu-action {
+    @include breakpoint("medium") {
+        border-bottom-color: #4a3020;
+        color: #e05a00;
+        font-weight: 700;
+    }
+}
+
+// Quick search dropdown
 .dropdown--quickSearch {
+    background-color: #ffffff;
     border-top: 3px solid #e05a00;
-    box-shadow: 0 4px 16px rgba(44, 26, 14, 0.12);
+    box-shadow: 0 4px 20px rgba(44, 26, 14, 0.12);
 }
 
-.quickSearchResults .card-title a {
-    color: #2c1a0e;
-    font-size: fontSize("smaller");
-    font-weight: 600;
-
-    &:hover {
-        color: #e05a00;
-    }
-}
-
-// Product cards — warm, game-store energy
-// -----------------------------------------------------------------------------
+// ---- Product cards ----------------------------------------------------------
 
 .card {
     background-color: #ffffff;
     border: 1px solid #f0ddd0;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
+    position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
     &:hover {
         border-color: #e05a00;
-        box-shadow: 0 8px 28px rgba(224, 90, 0, 0.15);
-        transform: translateY(-4px);
+        box-shadow: 0 6px 24px rgba(224, 90, 0, 0.18);
+        transform: translateY(-3px);
     }
 }
 
 .card-figure {
     background-color: #fff5ee;
-    border-radius: 10px 10px 0 0;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    position: relative;
+}
+
+// Action icons — right-side floating panel (heart / compare / eye)
+.card-figcaption {
+    background: transparent;
+    bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: remCalc(4px);
+    justify-content: flex-start;
+    left: auto;
+    opacity: 0;
+    padding: remCalc(8px);
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 0.2s ease;
+    width: auto;
+
+    .card:hover & {
+        opacity: 1;
+    }
+}
+
+.card-figcaption-body {
+    display: flex;
+    flex-direction: column;
+    gap: remCalc(4px);
 }
 
 .card-figcaption-button {
-    border-radius: 5px;
-    font-size: fontSize("smaller");
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #f0ddd0;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(44, 26, 14, 0.12);
+    color: #2c1a0e;
+    display: flex;
+    font-size: remCalc(11px);
     font-weight: 700;
-    letter-spacing: 0.05em;
-    padding: remCalc(8px) remCalc(16px);
+    height: remCalc(34px);
+    justify-content: center;
+    letter-spacing: 0.03em;
+    padding: 0 remCalc(8px);
     text-transform: uppercase;
-    transition: background-color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+    width: auto;
+
+    &:hover {
+        background-color: #e05a00;
+        border-color: #e05a00;
+        color: #ffffff;
+    }
+
+    &.button--primary {
+        background-color: #e05a00;
+        border-color: #e05a00;
+        color: #ffffff;
+
+        &:hover {
+            background-color: #bf3d00;
+            border-color: #bf3d00;
+        }
+    }
 }
 
 .card-body {
-    padding: remCalc(14px) remCalc(16px) remCalc(16px);
+    padding: remCalc(12px) remCalc(14px) remCalc(14px);
 }
 
 .card-title {
@@ -171,26 +345,64 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.3;
-    margin-bottom: spacing("quarter");
+    margin-bottom: remCalc(4px);
 
-    a:hover {
-        color: #e05a00;
+    a {
+        color: #1c0e00;
+        text-decoration: none;
+
+        &:hover {
+            color: #e05a00;
+        }
     }
 }
 
 .card-text--brand {
     color: #8b6550;
-    font-size: fontSize("smaller");
+    font-size: fontSize("smallest");
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
+    margin-bottom: remCalc(4px);
     text-transform: uppercase;
 }
 
-// Buttons — bold, confident
-// -----------------------------------------------------------------------------
+// Add to Cart on card — full-width orange pill below card body
+.card-body .button--primary {
+    border-radius: 6px;
+    display: block;
+    font-size: fontSize("smaller");
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: remCalc(10px);
+    padding: remCalc(10px);
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+// ---- Prices -----------------------------------------------------------------
+
+.price--withTax,
+.price--withoutTax {
+    color: #1c0e00;
+    font-weight: 700;
+}
+
+.price--sale {
+    color: #e05a00;
+    font-weight: 700;
+}
+
+.price--non-sale {
+    color: #b39080;
+    font-size: fontSize("smaller");
+    text-decoration: line-through;
+}
+
+// ---- Buttons ----------------------------------------------------------------
 
 .button {
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -209,46 +421,31 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.button--large {
-    font-size: fontSize("base");
-    padding: remCalc(14px) remCalc(32px);
-}
+// ---- Section headings (game-store style) ------------------------------------
 
-// Prices
-// -----------------------------------------------------------------------------
-
-.price--withTax,
-.price--withoutTax {
+.page-content > h2,
+.page-heading {
     color: #1c0e00;
+    font-size: remCalc(22px);
     font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: remCalc(20px);
+    text-transform: uppercase;
 }
 
-.price--sale {
-    color: #e05a00;
-    font-weight: 700;
-}
-
-.price--non-sale {
-    color: #8b6550;
-    font-size: fontSize("smaller");
-    text-decoration: line-through;
-}
-
-// Product grid spacing
-// -----------------------------------------------------------------------------
+// ---- Product grid -----------------------------------------------------------
 
 .productGrid {
     .product {
-        margin-bottom: remCalc(32px);
+        margin-bottom: remCalc(28px);
     }
 }
 
-// Product view page
-// -----------------------------------------------------------------------------
+// ---- Product view page ------------------------------------------------------
 
 .productView-title {
     color: #1c0e00;
-    font-size: remCalc(26px);
+    font-size: remCalc(24px);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.2;
@@ -258,18 +455,13 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.productView-price {
-    align-items: baseline;
-    display: flex;
-    gap: remCalc(8px);
-}
-
 .productView-price .price--withTax,
 .productView-price .price--withoutTax {
     font-size: remCalc(24px);
 }
 
 .productView-addToCart .button--primary {
+    border-radius: 6px;
     font-size: fontSize("base");
     padding: remCalc(14px) remCalc(32px);
     width: 100%;
@@ -279,42 +471,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.productView-details {
-    border-left: 4px solid #e05a00;
-    padding-left: remCalc(16px);
-}
-
-// Sale & sold-out badges
-// -----------------------------------------------------------------------------
+// ---- Badges -----------------------------------------------------------------
 
 .sale-flag-side {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 4px 4px 0;
     font-size: fontSize("tiny");
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
-// Section headings — game-store bold chapter titles
-// -----------------------------------------------------------------------------
-
-.page-heading,
-.section-heading {
-    border-left: 4px solid #e05a00;
-    color: #1c0e00;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    padding-left: remCalc(12px);
-}
-
-// Category/product section titles on homepage
-.heroCarousel + .container h2,
-.page-content h2 {
-    font-weight: 700;
-}
-
-// Breadcrumbs
-// -----------------------------------------------------------------------------
+// ---- Breadcrumbs ------------------------------------------------------------
 
 .breadcrumb {
     font-size: fontSize("smaller");
@@ -328,8 +495,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-// Forms
-// -----------------------------------------------------------------------------
+// ---- Forms ------------------------------------------------------------------
 
 .form-input,
 .form-select,
@@ -343,8 +509,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-// Footer — warm dark brown
-// -----------------------------------------------------------------------------
+// ---- Footer — warm dark brown -----------------------------------------------
 
 .footer {
     background-color: #2c1a0e;
@@ -358,7 +523,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: fontSize("tiny");
     font-weight: 700;
     letter-spacing: 0.1em;
-    margin-bottom: remCalc(16px);
+    margin-bottom: remCalc(14px);
     text-transform: uppercase;
 }
 
@@ -393,6 +558,7 @@ h1, h2, h3, h4, h5, h6 {
 
         a {
             color: #8b6550;
+            text-decoration: none;
 
             &:hover {
                 color: #e05a00;
@@ -401,28 +567,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-// Cart preview
-// -----------------------------------------------------------------------------
-
-.previewCart-item-image {
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.previewCartWrapper {
-    border-top: 3px solid #e05a00;
-}
-
-// Alerts
-// -----------------------------------------------------------------------------
+// ---- Misc -------------------------------------------------------------------
 
 .alertBox {
     border-left: 4px solid #e05a00;
     border-radius: 5px;
 }
-
-// Pagination
-// -----------------------------------------------------------------------------
 
 .pagination-item--current .pagination-link {
     background-color: #e05a00;
@@ -433,23 +583,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pagination-link {
     border-radius: 5px;
-    color: #2c1a0e;
     transition: background-color 0.15s ease, color 0.15s ease;
-
-    &:hover {
-        color: #e05a00;
-    }
-}
-
-// Product tabs
-// -----------------------------------------------------------------------------
-
-.tab-title {
-    color: #2c1a0e;
-    font-size: fontSize("smaller");
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
 .tab.is-active .tab-title {
@@ -457,29 +591,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #e05a00;
 }
 
-// Rating stars — use orange for filled
-// -----------------------------------------------------------------------------
-
-.icon--ratingFull {
-    color: #e05a00;
-}
-
-// Social links
-// -----------------------------------------------------------------------------
-
-.socialLinks-item a {
-    border-radius: 50%;
-    transition: background-color 0.15s ease, color 0.15s ease;
-
-    &:hover {
-        color: #e05a00;
-    }
-}
-
-// Skip to main link
-// -----------------------------------------------------------------------------
-
 .skip-to-main-link {
     background: #e05a00;
     color: #ffffff;
+}
+
+.previewCartWrapper {
+    border-top: 3px solid #e05a00;
 }
