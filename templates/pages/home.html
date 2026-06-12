@@ -26,10 +26,98 @@ blog:
     {{/each}}
 
 <div class="main full">
+
+    {{!-- ============ HERO BENTO GRID ============ --}}
+    <section class="homeHero">
+        <div class="homeHero-grid">
+
+            {{!-- Left: featured product hero card --}}
+            {{#each products.featured}}
+                {{#if @first}}
+                <article class="homeHero-feature" data-test="hero-card-{{id}}">
+                    <a href="{{url}}" class="homeHero-feature-media" aria-label="{{name}}">
+                        {{> components/common/responsive-img
+                            image=image
+                            class="homeHero-feature-image"
+                            fallback_size=../theme_settings.productgallery_size
+                            default_image=../theme_settings.default_image_product
+                        }}
+                    </a>
+                    <div class="homeHero-feature-body">
+                        {{#if brand.name}}<p class="homeHero-feature-brand">{{brand.name}}</p>{{/if}}
+                        <h2 class="homeHero-feature-title"><a href="{{url}}">{{name}}</a></h2>
+                        {{#if rating}}
+                            <span class="rating--small homeHero-feature-rating">
+                                {{> components/products/ratings rating=rating}}
+                            </span>
+                        {{/if}}
+                        <div class="homeHero-feature-price">
+                            {{#or ../customer (unless ../settings.hide_price_from_guests)}}
+                                {{> components/products/price price=price}}
+                            {{/or}}
+                        </div>
+                        <a href="{{url}}" class="button button--primary homeHero-feature-cta">View Details</a>
+                    </div>
+                </article>
+                {{/if}}
+            {{/each}}
+
+            {{!-- Center: tall promo banner --}}
+            <a class="homeHero-promo homeHero-promo--tall" href="{{urls.search}}">
+                <div class="homeHero-promo-content">
+                    <span class="homeHero-promo-eyebrow">We Make Fun!</span>
+                    <h3 class="homeHero-promo-title">Discover Your Next Favorite Game</h3>
+                    <span class="button button--primary homeHero-promo-cta">Shop All Games</span>
+                </div>
+            </a>
+
+            {{!-- Right: two stacked promo banners --}}
+            <a class="homeHero-promo homeHero-promo--top" href="{{urls.search}}">
+                <div class="homeHero-promo-content">
+                    <span class="homeHero-promo-tag">Best Sellers</span>
+                    <h4 class="homeHero-promo-subtitle">Award-Winning Tabletop Hits</h4>
+                    <span class="homeHero-promo-link">Show more &rsaquo;</span>
+                </div>
+            </a>
+
+            <a class="homeHero-promo homeHero-promo--bottom" href="{{urls.brands}}">
+                <div class="homeHero-promo-content">
+                    <span class="homeHero-promo-tag">New Arrivals</span>
+                    <h4 class="homeHero-promo-subtitle">Fresh From the Game Table</h4>
+                    <span class="homeHero-promo-link">Show more &rsaquo;</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    {{!-- ============ CATEGORY STRIP ============ --}}
+    {{#if categories.length}}
+    <section class="homeCategories">
+        <ul class="homeCategories-strip">
+            {{#each (limit categories 4)}}
+            <li class="homeCategories-item">
+                <a class="homeCategories-link" href="{{url}}">
+                    <span class="homeCategories-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    </span>
+                    <span class="homeCategories-text">
+                        <span class="homeCategories-name">{{name}}</span>
+                        <span class="homeCategories-more">Shop now &rsaquo;</span>
+                    </span>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </section>
+    {{/if}}
+
+    {{{region name="home_below_featured_products"}}}
+
+    {{!-- ============ PRODUCT SECTIONS ============ --}}
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
-    {{{region name="home_below_featured_products"}}}
 
     {{#if products.top_sellers}}
         {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
