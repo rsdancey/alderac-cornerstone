@@ -535,6 +535,37 @@ a {
 .navPages {
     @include breakpoint("medium") {
         background-color: #b12a1c !important; // override Cornerstone's `background: none`
+        margin: 0 auto;
+        max-width: remCalc(1280px);
+        padding: 0 remCalc(12px);
+    }
+}
+
+// Keep the category bar to a single, horizontally scrollable row instead of
+// wrapping into many rows when the store has a large category list.
+.navPages-list:not(.navPages-list--user) {
+    @include breakpoint("medium") {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-color: rgba(255, 255, 255, 0.45) transparent;
+        scrollbar-width: thin;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 4px;
+        }
+
+        > .navPages-item {
+            flex: 0 0 auto;
+        }
     }
 }
 
