@@ -1,11 +1,10 @@
 <nav class="navUser">
-    {{> components/common/navicons}}
     {{#and language_selector language_selector.languages.length '>' 1}}
         {{> components/common/language-selector}}
     {{/and}}
 
     {{#or customer (unless settings.hide_price_from_guests)}}
-       <!-- {{> components/common/currency-selector}} -->
+        {{> components/common/currency-selector}}
     {{/or}}
 
     {{#if theme_settings.show_channels}}

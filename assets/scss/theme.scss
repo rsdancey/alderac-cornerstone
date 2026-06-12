@@ -77,3 +77,6 @@
 // -----------------------------------------------------------------------------
 
 @import "layouts/layouts"; // 1
+
+// AEG Store design layer — loaded last to take precedence
+@import "theme-aegstore";

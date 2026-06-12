@@ -1,0 +1,412 @@
+// =============================================================================
+// AEG STORE — CUSTOM DESIGN LAYER
+// Modern visual overrides on top of Cornerstone 6.19.1
+// Design: deep navy + warm orange + clean white, Poppins/Lato typography
+// =============================================================================
+
+// Global typographic refinements
+// -----------------------------------------------------------------------------
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+// Header
+// -----------------------------------------------------------------------------
+
+.header {
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+
+    @include breakpoint("medium") {
+        border-bottom: none;
+    }
+}
+
+.header-logo {
+    @include breakpoint("medium") {
+        margin: spacing("single") remCalc(24px);
+    }
+}
+
+.header-logo-text {
+    color: stencilColor("storeName-color");
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.mobileMenu-toggleIcon,
+.mobileMenu-toggleIcon::before,
+.mobileMenu-toggleIcon::after {
+    background: stencilColor("navUser-color");
+}
+
+// Navigation — top bar (account, search, cart)
+// -----------------------------------------------------------------------------
+
+.navUser-action {
+    font-size: fontSize("smaller");
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+}
+
+.navUser-action--quickSearch {
+    &:hover {
+        color: stencilColor("navUser-color-hover");
+    }
+}
+
+.navUser-item--cart .countPill {
+    background-color: stencilColor("navUser-indicator-backgroundColor");
+    color: #fff;
+}
+
+// Navigation — main page nav
+// -----------------------------------------------------------------------------
+
+.navPages-action {
+    font-size: fontSize("smaller");
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding-bottom: remCalc(16px);
+    padding-top: remCalc(16px);
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+}
+
+.navPages-action.is-open,
+.navPages-action:hover {
+    color: stencilColor("navPages-color-hover");
+
+    &::before {
+        background: stencilColor("color-primary");
+    }
+}
+
+.navPages-subMenu {
+    border-top: 3px solid stencilColor("color-primary");
+}
+
+.navPages-subMenu-item a {
+    font-size: fontSize("smaller");
+}
+
+// Product cards — elevated, interactive
+// -----------------------------------------------------------------------------
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+    }
+}
+
+.card-figure {
+    background-color: #f9f8f6;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-figcaption {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.card-figcaption-button {
+    border-radius: 5px;
+    font-size: fontSize("smaller");
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: remCalc(8px) remCalc(16px);
+    text-transform: uppercase;
+    transition: background-color 0.15s ease;
+}
+
+.card-body {
+    padding: remCalc(14px) remCalc(16px) remCalc(16px);
+}
+
+.card-title {
+    font-size: fontSize("base");
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: spacing("quarter");
+}
+
+.card-text--brand {
+    font-size: fontSize("smaller");
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+// Buttons — strong, confident
+// -----------------------------------------------------------------------------
+
+.button {
+    border-radius: 5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.button--primary {
+    box-shadow: 0 2px 10px rgba(232, 82, 26, 0.25);
+
+    &:hover {
+        box-shadow: 0 4px 16px rgba(232, 82, 26, 0.35);
+    }
+}
+
+.button--large {
+    font-size: fontSize("base");
+    padding: remCalc(14px) remCalc(28px);
+}
+
+// Prices
+// -----------------------------------------------------------------------------
+
+.price--withTax,
+.price--withoutTax {
+    font-weight: 700;
+}
+
+.price--sale {
+    color: stencilColor("color-primary");
+    font-weight: 700;
+}
+
+.price--non-sale {
+    color: stencilColor("color-textSecondary");
+    font-size: fontSize("smaller");
+}
+
+// Product grid spacing
+// -----------------------------------------------------------------------------
+
+.productGrid {
+    .product {
+        margin-bottom: remCalc(32px);
+    }
+}
+
+// Product view page
+// -----------------------------------------------------------------------------
+
+.productView-title {
+    font-size: remCalc(26px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+
+    @include breakpoint("medium") {
+        font-size: remCalc(30px);
+    }
+}
+
+.productView-price {
+    align-items: baseline;
+    display: flex;
+    gap: remCalc(8px);
+}
+
+.productView-price .price--withTax,
+.productView-price .price--withoutTax {
+    font-size: remCalc(24px);
+}
+
+.productView-addToCart .button--primary {
+    font-size: fontSize("base");
+    padding: remCalc(14px) remCalc(32px);
+    width: 100%;
+
+    @include breakpoint("medium") {
+        width: auto;
+    }
+}
+
+// Sale & sold-out badges
+// -----------------------------------------------------------------------------
+
+.sale-flag-side {
+    border-radius: 0 5px 5px 0;
+    font-size: fontSize("tiny");
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+// Breadcrumbs
+// -----------------------------------------------------------------------------
+
+.breadcrumb {
+    font-size: fontSize("smaller");
+}
+
+.breadcrumb-label {
+    color: stencilColor("color-textSecondary");
+
+    &:hover {
+        color: stencilColor("color-primary");
+    }
+}
+
+// Forms
+// -----------------------------------------------------------------------------
+
+.form-input,
+.form-select,
+.form-textarea {
+    border-radius: 5px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba(232, 82, 26, 0.12);
+        outline: none;
+    }
+}
+
+// Footer — dark, clean, organized
+// -----------------------------------------------------------------------------
+
+.footer {
+    border-top: none;
+    padding-top: remCalc(48px);
+    padding-bottom: remCalc(32px);
+}
+
+.footer-info-heading {
+    color: #94a3b8;
+    font-size: fontSize("tiny");
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: remCalc(16px);
+    text-transform: uppercase;
+}
+
+.footer-info-list {
+    a {
+        color: #cbd5e1;
+        font-size: fontSize("smaller");
+        opacity: 0.85;
+        text-decoration: none;
+        transition: color 0.15s ease, opacity 0.15s ease;
+
+        &:hover {
+            color: stencilColor("color-primary");
+            opacity: 1;
+        }
+    }
+}
+
+.footer-copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: remCalc(32px);
+    padding-top: remCalc(20px);
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+
+    .powered-by {
+        color: #64748b;
+        font-size: fontSize("tiny");
+
+        a {
+            color: #64748b;
+
+            &:hover {
+                color: stencilColor("color-primary");
+            }
+        }
+    }
+}
+
+// Quick search dropdown
+// -----------------------------------------------------------------------------
+
+.dropdown--quickSearch {
+    border-top: 3px solid stencilColor("color-primary");
+}
+
+.quickSearchResults {
+    .card-title a {
+        font-size: fontSize("smaller");
+        font-weight: 600;
+    }
+}
+
+// Cart preview dropdown
+// -----------------------------------------------------------------------------
+
+.previewCart-item-image {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+// Alerts & notifications
+// -----------------------------------------------------------------------------
+
+.alertBox {
+    border-radius: 5px;
+}
+
+// Pagination
+// -----------------------------------------------------------------------------
+
+.pagination-item--current .pagination-link {
+    background-color: stencilColor("color-primary");
+    border-color: stencilColor("color-primary");
+    border-radius: 5px;
+    color: #fff;
+}
+
+.pagination-link {
+    border-radius: 5px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+// Tabs (product detail)
+// -----------------------------------------------------------------------------
+
+.tab-title {
+    font-size: fontSize("smaller");
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+// Social links in footer
+// -----------------------------------------------------------------------------
+
+.socialLinks-item a {
+    border-radius: 50%;
+    transition: background-color 0.15s ease;
+}
+
+// Newsletter subscription
+// -----------------------------------------------------------------------------
+
+.form-field--newsletter .button {
+    white-space: nowrap;
+}
