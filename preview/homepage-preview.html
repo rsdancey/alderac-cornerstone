@@ -9,7 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#fffbf8; --orange:#e05a00; --orange-dk:#bf3d00; --orange-lt:#f08040;
+    --cream:#fffbf8;
+    --red:#b12a1c; --red-dk:#8f1f13; --red-darker:#6f1810;
+    --orange:#e05a00; --orange-lt:#f08040; --orange-topbar:#e8732a;
     --brown:#2c1a0e; --brown-dk:#1c0e00; --tan:#8b6550; --tan-lt:#d9c0b0;
     --line:#f0ddd0; --tile:#fff5ee;
   }
@@ -24,54 +26,56 @@
   .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:6px 24px}
   .topbar .left{display:flex;gap:24px;align-items:center}
   .topbar .item{display:inline-flex;gap:5px;align-items:center}
-  .topbar .item svg{stroke:var(--orange)}
-  .topbar a{color:var(--orange)}
+  .topbar .item svg{stroke:var(--orange-topbar)}
+  .topbar a{color:var(--orange-topbar)}
   .topbar .right{display:flex;gap:14px;align-items:center}
 
   /* white header */
   .header{background:#fff;border-bottom:1px solid var(--line)}
   .header .wrap{display:flex;align-items:center;gap:24px;padding:14px 24px}
-  .logo{font-family:'Poppins';font-weight:800;font-size:28px;color:var(--orange);letter-spacing:.02em}
+  .brand{display:inline-flex;align-items:center;gap:12px}
+  .brand img{height:48px;width:auto;display:block}
+  .logo{font-family:'Poppins';font-weight:800;font-size:28px;color:var(--red);letter-spacing:.02em}
   .search{flex:1;display:flex;max-width:560px;border:2px solid var(--line);border-radius:8px;overflow:hidden}
   .search input{flex:1;border:0;padding:10px 14px;font-family:'Lato';font-size:14px;outline:none}
-  .search .cat{background:var(--orange);color:#fff;border:0;padding:0 16px;font-weight:700;font-size:13px;cursor:pointer}
+  .search .cat{background:var(--red);color:#fff;border:0;padding:0 16px;font-weight:700;font-size:13px;cursor:pointer}
   .util{display:flex;gap:22px;align-items:center;margin-left:auto;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-  .util a:hover{color:var(--orange)}
+  .util a:hover{color:var(--red)}
   .cart{position:relative}
-  .cart .pill{background:var(--orange);color:#fff;border-radius:50%;font-size:11px;padding:2px 6px;margin-left:4px}
+  .cart .pill{background:var(--red);color:#fff;border-radius:50%;font-size:11px;padding:2px 6px;margin-left:4px}
 
-  /* orange nav */
-  .nav{background:var(--orange);box-shadow:0 2px 8px rgba(44,26,14,.2)}
+  /* red nav */
+  .nav{background:var(--red);box-shadow:0 2px 8px rgba(44,26,14,.2)}
   .nav .wrap{display:flex;align-items:center;gap:6px;padding:0 24px}
   .nav a{color:#fff;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:14px 16px;display:inline-flex;gap:7px;align-items:center}
-  .nav a:hover{background:rgba(0,0,0,.15)}
+  .nav a:hover{background:rgba(0,0,0,.18)}
   .nav .email{margin-left:auto;text-transform:none;font-size:12px;letter-spacing:0}
 
   /* hero bento */
   .hero{padding:28px 0 8px}
-  .bento{display:grid;gap:16px;grid-template-columns:1.15fr 1.15fr 1fr;grid-template-rows:1fr 1fr;min-height:520px}
+  .bento{display:grid;gap:16px;grid-template-columns:1.15fr 1.15fr 1fr;grid-template-rows:1fr 1fr;min-height:560px}
   .feature{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;grid-column:1;grid-row:1/span 2;transition:.2s}
-  .feature:hover{border-color:var(--orange);box-shadow:0 8px 30px rgba(224,90,0,.16)}
-  .feature .media{background:var(--tile);flex:1;display:flex;align-items:center;justify-content:center;padding:20px;min-height:240px}
-  .feature .media span{font-size:64px}
+  .feature:hover{border-color:var(--red);box-shadow:0 8px 30px rgba(177,42,28,.18)}
+  .feature .media{background:var(--tile);flex:1;display:flex;align-items:center;justify-content:center;padding:12px;min-height:380px}
+  .feature .media span{font-size:170px;line-height:1}
   .feature .body{padding:18px 20px 22px}
-  .feature .brand{color:var(--tan);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+  .feature .brand-line{color:var(--tan);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
   .feature .title{font-size:22px;font-weight:700;color:var(--brown-dk);margin-bottom:8px}
   .feature .stars{color:var(--orange);margin-bottom:8px;font-size:15px}
   .feature .price{font-size:22px;font-weight:700;color:var(--brown-dk);margin-bottom:16px}
   .feature .price .old{color:var(--tan-lt);text-decoration:line-through;font-size:15px;margin-left:6px}
-  .btn{display:inline-block;background:var(--orange);color:#fff;font-family:'Poppins';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:12px 24px;border-radius:6px;box-shadow:0 2px 10px rgba(224,90,0,.3);transition:.15s;cursor:pointer}
-  .btn:hover{background:var(--orange-dk);box-shadow:0 4px 18px rgba(224,90,0,.4)}
+  .btn{display:inline-block;background:var(--red);color:#fff;font-family:'Poppins';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:12px 24px;border-radius:6px;box-shadow:0 2px 10px rgba(177,42,28,.3);transition:.15s;cursor:pointer}
+  .btn:hover{background:var(--red-dk);box-shadow:0 4px 18px rgba(177,42,28,.4)}
 
   .promo{border-radius:12px;padding:24px;display:flex;align-items:flex-end;color:#fff;position:relative;overflow:hidden;transition:.2s;min-height:160px}
   .promo:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(44,26,14,.22)}
   .promo .c{position:relative;z-index:2}
-  .promo.tall{grid-column:2;grid-row:1/span 2;background:linear-gradient(150deg,#e05a00,#bf3d00 55%,#2c1a0e)}
+  .promo.tall{grid-column:2;grid-row:1/span 2;background:linear-gradient(150deg,#b12a1c,#8f1f13 55%,#2c1a0e)}
   .promo.top{grid-column:3;grid-row:1;background:linear-gradient(150deg,#3a2316,#1c0e00)}
   .promo.bot{grid-column:3;grid-row:2;background:linear-gradient(150deg,#f08040,#e05a00)}
   .promo .eyebrow{color:#ffe8d9;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:8px}
   .promo .ptitle{font-size:28px;font-weight:700;margin-bottom:16px;max-width:14ch}
-  .promo .btn{background:#fff;color:var(--orange);box-shadow:none}
+  .promo .btn{background:#fff;color:var(--red);box-shadow:none}
   .promo .tag{background:rgba(255,255,255,.18);border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;display:inline-block;margin-bottom:8px}
   .promo .sub{font-size:18px;font-weight:700;margin-bottom:8px;max-width:18ch}
   .promo .link{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
@@ -80,35 +84,35 @@
   .cats{padding:28px 0}
   .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;list-style:none}
   .ctile{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;transition:.2s}
-  .ctile:hover{border-color:var(--orange);box-shadow:0 6px 20px rgba(224,90,0,.14);transform:translateY(-2px)}
-  .ctile:hover .cicon{background:var(--orange);color:#fff}
-  .cicon{width:48px;height:48px;border-radius:50%;background:var(--tile);color:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
+  .ctile:hover{border-color:var(--red);box-shadow:0 6px 20px rgba(177,42,28,.16);transform:translateY(-2px)}
+  .ctile:hover .cicon{background:var(--red);color:#fff}
+  .cicon{width:48px;height:48px;border-radius:50%;background:var(--tile);color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s;font-size:22px}
   .cname{font-family:'Poppins';font-weight:700;color:var(--brown-dk);font-size:15px}
-  .cmore{color:var(--orange);font-size:13px;font-weight:700}
+  .cmore{color:var(--red);font-size:13px;font-weight:700}
 
   /* product grid */
   .section{padding:16px 0 8px}
-  .heading{border-left:4px solid var(--orange);padding-left:12px;font-size:22px;font-weight:700;text-transform:uppercase;color:var(--brown-dk);margin-bottom:20px}
+  .heading{border-left:4px solid var(--red);padding-left:12px;font-size:22px;font-weight:700;text-transform:uppercase;color:var(--brown-dk);margin-bottom:20px}
   .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
   .card{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:.2s;position:relative}
-  .card:hover{border-color:var(--orange);box-shadow:0 6px 24px rgba(224,90,0,.18);transform:translateY(-3px)}
+  .card:hover{border-color:var(--red);box-shadow:0 6px 24px rgba(177,42,28,.18);transform:translateY(-3px)}
   .card:hover .actions{opacity:1}
-  .card .fig{background:var(--tile);height:200px;display:flex;align-items:center;justify-content:center;font-size:54px;position:relative}
+  .card .fig{background:var(--tile);height:250px;display:flex;align-items:center;justify-content:center;font-size:120px;line-height:1;position:relative}
   .actions{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:4px;opacity:0;transition:.2s}
   .actions button{width:34px;height:34px;border-radius:6px;border:1px solid var(--line);background:#fff;box-shadow:0 2px 6px rgba(44,26,14,.12);cursor:pointer;font-size:14px;color:var(--brown)}
-  .actions button:hover{background:var(--orange);color:#fff;border-color:var(--orange)}
+  .actions button:hover{background:var(--red);color:#fff;border-color:var(--red)}
   .card .cbody{padding:12px 14px 14px}
   .card .cbrand{color:var(--tan);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
   .card .ctitle{font-family:'Poppins';font-weight:700;color:var(--brown-dk);font-size:15px;margin-bottom:4px}
   .card .cstars{color:var(--orange);font-size:13px;margin-bottom:4px}
   .card .cprice{font-weight:700;color:var(--brown-dk)}
   .card .cprice .old{color:var(--tan-lt);text-decoration:line-through;font-size:13px;margin-left:5px}
-  .card .addcart{display:block;width:100%;margin-top:10px;background:var(--orange);color:#fff;text-align:center;font-family:'Poppins';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:10px;border-radius:6px;cursor:pointer}
-  .card .addcart:hover{background:var(--orange-dk)}
-  .sash{position:absolute;top:12px;left:0;background:var(--orange);color:#fff;font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:0 4px 4px 0;z-index:2}
+  .card .addcart{display:block;width:100%;margin-top:10px;background:var(--red);color:#fff;text-align:center;font-family:'Poppins';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:10px;border-radius:6px;cursor:pointer}
+  .card .addcart:hover{background:var(--red-dk)}
+  .sash{position:absolute;top:12px;left:0;background:var(--red);color:#fff;font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:0 4px 4px 0;z-index:2}
 
   /* footer */
-  .footer{background:var(--brown);border-top:4px solid var(--orange);margin-top:40px;padding:48px 0 32px;color:var(--tan-lt)}
+  .footer{background:var(--brown);border-top:4px solid var(--red);margin-top:40px;padding:48px 0 32px;color:var(--tan-lt)}
   .footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
   .footer h4{color:var(--tan);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
   .footer a{color:var(--tan-lt);font-size:13px;display:block;padding:3px 0}
@@ -120,7 +124,7 @@
 </head>
 <body>
 
-<div class="note">Static design preview — mock content. Real product data is filled in by BigCommerce when the theme is live.</div>
+<div class="note">Static design preview — mock content. Real product images are filled in by BigCommerce when the theme is live.</div>
 
 <!-- TOP BAR -->
 <div class="topbar"><div class="wrap">
@@ -133,7 +137,10 @@
 
 <!-- HEADER -->
 <div class="header"><div class="wrap">
-  <a class="logo" href="#">ALDERAC</a>
+  <a class="brand" href="#">
+    <img src="../assets/img/alderac/aeg-logo.png" alt="AEG">
+    <span class="logo">ALDERAC</span>
+  </a>
   <div class="search"><input placeholder="Search games, expansions, accessories…"><button class="cat">All Categories ▾</button></div>
   <div class="util">
     <a href="#">Account</a>
@@ -141,7 +148,7 @@
   </div>
 </div></div>
 
-<!-- ORANGE NAV -->
+<!-- RED NAV -->
 <div class="nav"><div class="wrap">
   <a href="#">▦ All Categories ▾</a>
   <a href="#">Board Games</a>
@@ -160,7 +167,7 @@
       <article class="feature">
         <div class="media"><span>🃏</span></div>
         <div class="body">
-          <p class="brand">Alderac Entertainment Group</p>
+          <p class="brand-line">Alderac Entertainment Group</p>
           <h3 class="title">Smash Up: Big Geeky Box</h3>
           <div class="stars">★★★★★</div>
           <div class="price">$39.99 <span class="old">$49.99</span></div>
